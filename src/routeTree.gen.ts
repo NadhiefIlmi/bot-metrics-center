@@ -10,11 +10,54 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EmailHistoryRouteImport } from './routes/email-history'
+import { Route as EmailManagementRouteImport } from './routes/email-management'
+import { Route as GenerateReportRouteImport } from './routes/generate-report'
+import { Route as ReportHistoryRouteImport } from './routes/report-history'
+import { Route as SettingsEmailRouteImport } from './routes/settings.email'
+import { Route as SettingsGeneralRouteImport } from './routes/settings.general'
+import { Route as SettingsUsersRouteImport } from './routes/settings.users'
 import { Route as UseCasesIndexRouteImport } from './routes/use-cases.index'
+import { Route as UseCasesUseCaseIdRouteImport } from './routes/use-cases.$useCaseId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailHistoryRoute = EmailHistoryRouteImport.update({
+  id: '/email-history',
+  path: '/email-history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailManagementRoute = EmailManagementRouteImport.update({
+  id: '/email-management',
+  path: '/email-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GenerateReportRoute = GenerateReportRouteImport.update({
+  id: '/generate-report',
+  path: '/generate-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportHistoryRoute = ReportHistoryRouteImport.update({
+  id: '/report-history',
+  path: '/report-history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsEmailRoute = SettingsEmailRouteImport.update({
+  id: '/settings/email',
+  path: '/settings/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsGeneralRoute = SettingsGeneralRouteImport.update({
+  id: '/settings/general',
+  path: '/settings/general',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsUsersRoute = SettingsUsersRouteImport.update({
+  id: '/settings/users',
+  path: '/settings/users',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UseCasesIndexRoute = UseCasesIndexRouteImport.update({
@@ -22,30 +65,98 @@ const UseCasesIndexRoute = UseCasesIndexRouteImport.update({
   path: '/use-cases/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UseCasesUseCaseIdRoute = UseCasesUseCaseIdRouteImport.update({
+  id: '/use-cases/$useCaseId',
+  path: '/use-cases/$useCaseId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/email-history': typeof EmailHistoryRoute
+  '/email-management': typeof EmailManagementRoute
+  '/generate-report': typeof GenerateReportRoute
+  '/report-history': typeof ReportHistoryRoute
+  '/settings/email': typeof SettingsEmailRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/use-cases/$useCaseId': typeof UseCasesUseCaseIdRoute
   '/use-cases/': typeof UseCasesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/email-history': typeof EmailHistoryRoute
+  '/email-management': typeof EmailManagementRoute
+  '/generate-report': typeof GenerateReportRoute
+  '/report-history': typeof ReportHistoryRoute
+  '/settings/email': typeof SettingsEmailRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/use-cases/$useCaseId': typeof UseCasesUseCaseIdRoute
   '/use-cases': typeof UseCasesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/email-history': typeof EmailHistoryRoute
+  '/email-management': typeof EmailManagementRoute
+  '/generate-report': typeof GenerateReportRoute
+  '/report-history': typeof ReportHistoryRoute
+  '/settings/email': typeof SettingsEmailRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/users': typeof SettingsUsersRoute
+  '/use-cases/$useCaseId': typeof UseCasesUseCaseIdRoute
   '/use-cases/': typeof UseCasesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/use-cases/'
+  fullPaths:
+    | '/'
+    | '/email-history'
+    | '/email-management'
+    | '/generate-report'
+    | '/report-history'
+    | '/settings/email'
+    | '/settings/general'
+    | '/settings/users'
+    | '/use-cases/$useCaseId'
+    | '/use-cases/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/use-cases'
-  id: '__root__' | '/' | '/use-cases/'
+  to:
+    | '/'
+    | '/email-history'
+    | '/email-management'
+    | '/generate-report'
+    | '/report-history'
+    | '/settings/email'
+    | '/settings/general'
+    | '/settings/users'
+    | '/use-cases/$useCaseId'
+    | '/use-cases'
+  id:
+    | '__root__'
+    | '/'
+    | '/email-history'
+    | '/email-management'
+    | '/generate-report'
+    | '/report-history'
+    | '/settings/email'
+    | '/settings/general'
+    | '/settings/users'
+    | '/use-cases/$useCaseId'
+    | '/use-cases/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmailHistoryRoute: typeof EmailHistoryRoute
+  EmailManagementRoute: typeof EmailManagementRoute
+  GenerateReportRoute: typeof GenerateReportRoute
+  ReportHistoryRoute: typeof ReportHistoryRoute
+  SettingsEmailRoute: typeof SettingsEmailRoute
+  SettingsGeneralRoute: typeof SettingsGeneralRoute
+  SettingsUsersRoute: typeof SettingsUsersRoute
+  UseCasesUseCaseIdRoute: typeof UseCasesUseCaseIdRoute
   UseCasesIndexRoute: typeof UseCasesIndexRoute
 }
 
@@ -58,6 +169,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/email-history': {
+      id: '/email-history'
+      path: '/email-history'
+      fullPath: '/email-history'
+      preLoaderRoute: typeof EmailHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-management': {
+      id: '/email-management'
+      path: '/email-management'
+      fullPath: '/email-management'
+      preLoaderRoute: typeof EmailManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/generate-report': {
+      id: '/generate-report'
+      path: '/generate-report'
+      fullPath: '/generate-report'
+      preLoaderRoute: typeof GenerateReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/report-history': {
+      id: '/report-history'
+      path: '/report-history'
+      fullPath: '/report-history'
+      preLoaderRoute: typeof ReportHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/email': {
+      id: '/settings/email'
+      path: '/settings/email'
+      fullPath: '/settings/email'
+      preLoaderRoute: typeof SettingsEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/general': {
+      id: '/settings/general'
+      path: '/settings/general'
+      fullPath: '/settings/general'
+      preLoaderRoute: typeof SettingsGeneralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings/users': {
+      id: '/settings/users'
+      path: '/settings/users'
+      fullPath: '/settings/users'
+      preLoaderRoute: typeof SettingsUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/use-cases/': {
       id: '/use-cases/'
       path: '/use-cases'
@@ -65,11 +225,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UseCasesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/use-cases/$useCaseId': {
+      id: '/use-cases/$useCaseId'
+      path: '/use-cases/$useCaseId'
+      fullPath: '/use-cases/$useCaseId'
+      preLoaderRoute: typeof UseCasesUseCaseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmailHistoryRoute: EmailHistoryRoute,
+  EmailManagementRoute: EmailManagementRoute,
+  GenerateReportRoute: GenerateReportRoute,
+  ReportHistoryRoute: ReportHistoryRoute,
+  SettingsEmailRoute: SettingsEmailRoute,
+  SettingsGeneralRoute: SettingsGeneralRoute,
+  SettingsUsersRoute: SettingsUsersRoute,
+  UseCasesUseCaseIdRoute: UseCasesUseCaseIdRoute,
   UseCasesIndexRoute: UseCasesIndexRoute,
 }
 export const routeTree = rootRouteImport
